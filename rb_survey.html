@@ -58,7 +58,7 @@
             <legend>Customer Information</legend>
             <div class="formRow">
                <label for="name">Name*</label>
-               <input name="custName" id="name" type="text" placeholder="First and Last Name" >
+               <input required name="custName" id="name" type="text" placeholder="First and Last Name" >
             </div>
             <div class="formRow">
                <label for="street">Street</label>
@@ -70,19 +70,19 @@
                </div>
                <div class="formRow">
                   <label for="state">State</label>
-                  <input name="custState" id="state" type="text" value="FL" />
+                  <input maxlength="2" name="custState" id="state" type="text" value="FL" />
                </div>
                <div class="formRow">
                   <label for="zip">Postal Code</label>
-                  <input name="custZip" id="zip" type="text" placeholder="##### (-####)" />
+                  <input name="custZip" pattern="^\d{5}$(-\d{4})?$" id="zip" type="text" placeholder="#####(-####)" />
                </div>
                <div class="formRow">
                   <label for="phone">Phone Number</label>
-                  <input name="custPhone" id="phone" type="tel" placeholder="(###) ###-####"/>
+                  <input name="custPhone" pattern="^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$" id="phone" type="tel" placeholder="(###)###-####"/>
                </div>
                <div class="formRow">
                   <label for="mail">Email*</label>
-                  <input name="custMail" id="mail" type="email" placeholder="example@example.com" />
+                  <input required name="custMail" id="mail" type="email" placeholder="example@example.com" />
                </div>
 
                <div class="formRow">
@@ -95,6 +95,25 @@
                      <option value="other">Other</option>
                   </select>
                </div>
+
+               <div class="formRow">
+                  <label for="dineSpin">How many times do you dine out a month?</label>
+                  <input name="dineOut" id="dineSpin" type="number" value="1" step="1" min="0" max="20">
+               </div>
+
+               <div class="formRow">
+                  <label for="dish">What is your favorite dish?</label>
+                  <input name="favDish" id="dish" type="text" list="dishType">
+                  <datalist id="dishType">
+                     <option value="Antipasto Pizza"/>
+                     <option value="Big Kahuna Pizza"/>
+                     <option value="BBQ Chicken Pizza"/>
+                     <option value="Mediterranean Herb Pizza"/>
+                     <option value="Pasta Rolls"/>
+                     <option value="Pasto Artichoke Pizza"/>
+                  </datalist>
+               </div>
+
                <input name="mailMe" id="mailCB" type="checkbox" checked />
                <label for="mailCb">Add me to your mailing list for great coupons and specials!</label>
 
@@ -144,10 +163,24 @@
                      <input name="foodHot" id="hSteve" value="steve" type="radio" checked/>
                   </fieldset>
                </div>
+
+               <div class="formRow">
+                  <label for="rangeBox">Rate the overall service!<br>(0 = Poor, 10 = Great</label>
+                  0
+                  <input name="serviceRate" id="rangeBox" type="range" value="5" step="1" min="0" max="10">
+                  10
+               </div>
+
                <label for="commentBox">Tell us more about your experience!</label>
                <textarea name="name" id="commBox"></textarea>
                
          </fieldset>
+
+         <div id="buttons">
+            <input type="submit" value="Submit My Servey" />
+            <input type="reset" value="Cancel" />
+         </div>
+
       </form>
 
      
